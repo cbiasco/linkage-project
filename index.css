@@ -1,94 +1,11 @@
-@font-face {
-    font-family: NorthwoodHigh;
-    src: url("font/Northwood High.ttf");
-}
-
-html, body {
-    padding: 0;
-    margin: 0;
-}
-
-/* Make the game dark */
-/*
-body {
-    background: black;
-    color: white;
-}
-*/
-
-h6, h5, h4, h3, h2, h1 {
-    font-family: NorthwoodHigh, sans-serif;
-}
-
 h1 {
-    font-size: 4rem;
-    margin-bottom: -0.2rem;
-    margin-top: -0.2rem;
-    margin-left: 1rem;
+    font-family:courier;
 }
 
-#game {
-    margin: auto;
-    width: 800px;
+input {
+   font-family:arial;
 }
 
-#button-container {
-    margin: auto;
-    width: 800px;
-}
-
-.ui-button {
-    width: 35px;
-    height: 35px;
-    outline: 0;
-    position: relative;
-    top: 25px;
-    left: 765px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 25px 25px;
-    
-    border: 1px solid black;
-    border-radius: 4px;
-}
-
-.ui-button:hover {
-    border: 1px solid #999;
-}
-
-#debug-container {
-    margin: auto;
-    width: 800px;
-}
-
-#fullscreen {
-    background-image: url("images/FullScreen.png");
-}
-
-#fullscreen:hover {
-    background-image: url("images/FullScreen_Hover.png");
-}
-
-#left {
-    background-image: url("images/DebugChangeMapLeft.png");
-}
-
-#left:hover {
-    background-image: url("images/Left-Hover.png");
-}
-
-#right {
-    background-image: url("images/DebugChangeMapRight.png");
-}
-
-#right:hover {
-    background-image: url("images/Right-Hover.png");
-}
-
-#debug {
-    background-image: url("images/Debug.png");
-}
-
-#debug:hover {
-    background-image: url("images/Debug-Hover.png");
+body, span {
+   font-family:verdana;
 }

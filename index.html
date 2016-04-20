@@ -1,37 +1,42 @@
 <!DOCTYPE html>
 <html>
-    <head>
+	<head>
         <meta charset="utf-8">
-        <title>Energy Usage Calculator</title>
+        <title>Daily Energy Usage Calculator</title>
 		<link rel="stylesheet" href="index.css" type="text/css" />
         <script type="text/javascript" src="EnergyUsage.js"></script>
     </head>
     <body>
-        <h1>Energy Usage Calculator</h1>
+        <h1>Daily Energy Usage Calculator</h1>
         <div id='day-in-the-life'>
 			<p></p>
-			<form>
-			How many minutes do you shower? <input type="text" name="shower" value="0"><br>
+			<form id="activities" onsubmit="return false">
+			How many minutes do you shower? &nbsp;&nbsp;&nbsp;&nbsp;
+			<span id="T_shower">0 kWh/hr</span><br>
+			<input type="text" name="shower" value=0 onchange="change('box', 'shower')"><br>
 			<br>
-				Do you use a hair dryer? <br>
-				<input type="radio" name="hair-dryer" value="1">Yes.<br>
-				<input type="radio" name="hair-dryer" value="0" checked>No.<br>
+				Do you use a hair dryer? &nbsp;&nbsp;&nbsp;&nbsp;
+				<span id="T_hairdryer">0 kWh/hr</span><br>
+				<input type="radio" name="hairdryer" value=1 onchange="change('radio', 'hairdryer')">Yes.<br>
+				<input type="radio" name="hairdryer" value=0 onchange="change('radio', 'hairdryer')" checked>No.<br>
 			<br>
-				What do you use for breakfast?<br>
-				<input type="radio" name="breakfast" value="3">Oven<br>
-				<input type="radio" name="breakfast" value="2">Stovetop<br>
-				<input type="radio" name="breakfast" value="1">Microwave<br>
-				<input type="radio" name="breakfast" value="0" checked>No appliances<br>
+				What do you use for breakfast? &nbsp;&nbsp;&nbsp;&nbsp;
+				<span id="T_breakfast">0 kWh/hr</span><br>
+				<input type="radio" name="breakfast" value=3 onchange="change('radio', 'breakfast')">Oven<br>
+				<input type="radio" name="breakfast" value=2 onchange="change('radio', 'breakfast')">Stovetop<br>
+				<input type="radio" name="breakfast" value=1 onchange="change('radio', 'breakfast')">Microwave<br>
+				<input type="radio" name="breakfast" value=0 onchange="change('radio', 'breakfast')" checked>No appliances<br>
 			<br>
-			<input type="submit" value="Submit" onclick="calculateEnergy()">
 			</form>
 		</div>
 		
-        <div id='button-container'>
+        <div id='total-container'>
+			<p></p>
+			<h2>Total: <span id="total">0 kWh/hr</span></h2>
         </div>
 		<div id="bottom-buttons">
 			<p></p>
-			<button type="button" id="reset" onclick="reset()">Reset</button>
+			<input type="button" value="Reset" onclick="reset()">
         </div>
     </body>
 </html>
