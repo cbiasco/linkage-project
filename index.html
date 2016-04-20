@@ -11,28 +11,54 @@
         <div id='day-in-the-life'>
 			<p></p>
 			<form id="activities" onsubmit="return false">
-			How many minutes do you shower? &nbsp;&nbsp;&nbsp;&nbsp;
-			<span id="T_shower">0 kWh/hr</span><br>
-			<input type="text" name="shower" value=0 onchange="change('box', 'shower')"><br>
+				How many minutes do you shower? &nbsp;&nbsp;&nbsp;&nbsp;
+				<span id="T_shower">0 kWh</span><br>
+				<input type="text" name="shower" value=0 onchange="change('box', 'shower')"><br>
 			<br>
 				Do you use a hair dryer? &nbsp;&nbsp;&nbsp;&nbsp;
-				<span id="T_hairdryer">0 kWh/hr</span><br>
+				<span id="T_hairdryer">0 kWh</span><br>
 				<input type="radio" name="hairdryer" value=1 onchange="change('radio', 'hairdryer')">Yes.<br>
 				<input type="radio" name="hairdryer" value=0 onchange="change('radio', 'hairdryer')" checked>No.<br>
 			<br>
+				Do you make coffee? &nbsp;&nbsp;&nbsp;&nbsp;
+				<span id="T_coffee">0 kWh</span><br>
+				<input type="radio" name="coffee" value=1 onchange="change('radio', 'coffee')">Yes.<br>
+				<input type="radio" name="coffee" value=0 onchange="change('radio', 'coffee')" checked>No.<br>
+			<br>
 				What do you use for breakfast? &nbsp;&nbsp;&nbsp;&nbsp;
-				<span id="T_breakfast">0 kWh/hr</span><br>
-				<input type="radio" name="breakfast" value=3 onchange="change('radio', 'breakfast')">Oven<br>
-				<input type="radio" name="breakfast" value=2 onchange="change('radio', 'breakfast')">Stovetop<br>
+				<span id="T_breakfast">0 kWh</span><br>
+				<input type="radio" name="breakfast" value=4 onchange="change('radio', 'breakfast')">Oven<br>
+				<input type="radio" name="breakfast" value=3 onchange="change('radio', 'breakfast')">Stovetop<br>
+				<input type="radio" name="breakfast" value=2 onchange="change('radio', 'breakfast')">Toaster<br>
 				<input type="radio" name="breakfast" value=1 onchange="change('radio', 'breakfast')">Microwave<br>
 				<input type="radio" name="breakfast" value=0 onchange="change('radio', 'breakfast')" checked>No appliances<br>
+			<br>
+				How many hours do you spend watching TV? &nbsp;&nbsp;&nbsp;&nbsp;
+				<span id="T_tv">0 kWh</span><br>
+				<input type="text" name="tv" value=0 onchange="change('box', 'tv')"><br>
+			<br>
+				Do you have a laptop computer? &nbsp;&nbsp;&nbsp;&nbsp;
+				<span id="T_laptop">0 kWh</span><br>
+				<input type="radio" name="laptop" value=1 onchange="change('radio', 'laptop')">Yes.<br>
+				<input type="radio" name="laptop" value=0 onchange="change('radio', 'laptop')" checked>No.<br>
+			<br>
+				How many hours is the laptop on? &nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="text" name="laptopTime" value=0 onchange="change('box', 'laptopTime')"><br>
+			<br>
+				Do you have a desktop computer? &nbsp;&nbsp;&nbsp;&nbsp;
+				<span id="T_desktop">0 kWh</span><br>
+				<input type="radio" name="desktop" value=1 onchange="change('radio', 'desktop')">Yes.<br>
+				<input type="radio" name="desktop" value=0 onchange="change('radio', 'desktop')" checked>No.<br>
+			<br>
+				How many hours is the desktop on? &nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="text" name="desktopTime" value=0 onchange="change('box', 'desktopTime')"><br>
 			<br>
 			</form>
 		</div>
 		
         <div id='total-container'>
 			<p></p>
-			<h2>Total: <span id="total">0 kWh/hr</span></h2>
+			<h2>Total: <span id="total">0 kWh</span></h2>
         </div>
 		<div id="bottom-buttons">
 			<p></p>

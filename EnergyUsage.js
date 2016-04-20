@@ -1,8 +1,20 @@
+/*
+ * Values obtained from:
+ * http://www.siliconvalleypower.com/for-residents/save-energy/appliance-energy-use-chart
+ * http://www.skidmore.edu/~jthomas/lifestyleproject/energyfacts.html
+ */
+
 var shower = 0;
 var hairdryer = 1;
-var breakfast = 2;
+var coffee = 2;
+var breakfast = 3;
+var tv = 4;
+var laptop = false;
+var laptopTime = 5;
+var desktop = false;
+var desktopTime = 6;
 var list = [];
-for (var i = 0; i < 3; i++)
+for (var i = 0; i < 7; i++)
 	list[i] = 0;
 
 function change(type, name) {
@@ -12,34 +24,78 @@ function change(type, name) {
 		case "radio":
 			for (var i = 0; i < inputs.length; i++) {
 				if (inputs[i].checked)
-					output += equation(name, inputs[i].value);
+					output += equation(name, Number(inputs[i].value));
 			}
 			break;
 		case "box":
-			output += equation(name, inputs[0].value);
+			if (!isNaN(inputs[0].value))
+				output = equation(name, Number(inputs[0].value));
+			else
+				output = equation(name, 0);
 			break;
 		default:
 			return;
 	}
-	
- 	document.getElementById("T_" + name).innerHTML = output + " kWh/hr";
+	var element = document.getElementById("T_" + name);
+	if (element !== null && qualifies(name))
+		element.innerHTML = output + " kWh";
+	else if (element !== null)
+		element.innerHTML = "0 kWh";
 	updateTotal();
+}
+
+function qualifies(name) {
+	switch (name) {
+		case "desktop":
+			return desktop;
+		case "laptop":
+			return laptop;
+		default:
+			return true;
+	}
 }
 
 function equation(name, value) {
 	switch (name) {
 		case "shower":
-			list[shower] = 1*value;
+			list[shower] = rounded(0.6447564*value);
 			return list[shower];
-			break;
 		case "hairdryer":
-			list[hairdryer] = 15*value;
+			list[hairdryer] = rounded(((1.5/60)*5)*value);
 			return list[hairdryer];
-			break;
+		case "coffee":
+			list[coffee] = rounded(.12*value);
+			return list[coffee];
 		case "breakfast":
-			list[breakfast] = 30*value;
+			if (value == 0) // no appliances
+				list[breakfast] = 0;
+			else if (value == 1) // microwave
+				list[breakfast] = .12;
+			else if (value == 2) // toaster
+				list[breakfast] = .04;
+			else if (value == 3) // stovetop
+				list[breakfast] = ((1.5/60)*10);
+			else if (value == 4) // oven
+				list[breakfast] = ((2.3/60)*15);
+			list[breakfast] = rounded(list[breakfast]);
 			return list[breakfast];
-			break;
+		case "tv":
+			list[tv] = rounded(.2*value);
+			return list[tv];
+		case "laptop":
+			laptop = (value == 1) ? true : false;
+			return list[laptopTime];
+		case "laptopTime":
+			list[laptopTime] = rounded(value*.04);
+			change("radio", "laptop");
+			return list[laptopTime];
+		case "desktop":
+			desktop = (value == 1) ? true : false;
+			return list[desktopTime];
+		case "desktopTime":
+			list[desktopTime] = rounded(value*.12);
+			change("radio", "desktop");
+			return list[desktopTime];
 		default:
 			return 0;
 	}
@@ -47,9 +103,14 @@ function equation(name, value) {
 
 function updateTotal() {
 	var sum = 0;
-	for (var i = 0; i < list.length; i++)
+	for (var i = 0; i < list.length; i++) {
+		if (i == laptopTime && laptop == false)
+			continue;
+		else if (i == desktopTime && desktop == false)
+			continue;
 		sum += list[i];
-	document.getElementById("total").innerHTML = sum + " kWh/hr";
+	}
+	document.getElementById("total").innerHTML = rounded(sum) + " kWh";
 }
 
 function reset() {
@@ -59,5 +120,9 @@ function reset() {
 	for (var i = 0; i < inputs.length; i++) {
 		change(inputs[i].type, inputs[i].name);
 	}
-	document.getElementById("total").innerHTML = "0 kWh/hr";
+	document.getElementById("total").innerHTML = "0 kWh";
+}
+
+function rounded(num) {
+	return Math.round(100 * num)/100;
 }
