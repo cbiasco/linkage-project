@@ -6,6 +6,11 @@ input {
    font-family:arial;
 }
 
-body, span {
+body {
    font-family:verdana;
+}
+
+span {
+   font-family:arial;
+   font-weight: bold;
 }
