@@ -16,11 +16,8 @@ var desktopTime = 6;
 var fridge = 7;
 var washer = 8;
 var washType = 2;
-var tempAC = true;
-var tempMult = 0;
-var temp = 9;
 var list = [];
-for (var i = 0; i < 10; i++)
+for (var i = 0; i < 9; i++)
 	list[i] = 0;
 
 function change(type, name) {
@@ -64,15 +61,15 @@ function qualifies(name) {
 function equation(name, value) {
 	switch (name) {
 		case "shower":
-			list[shower] = 0.6447564*value;
+			list[shower] = rounded(0.6447564*value);
 			return list[shower];
 			
 		case "hairdryer":
-			list[hairdryer] = ((1.5/60)*5)*value;
+			list[hairdryer] = rounded(((1.5/60)*5)*value);
 			return list[hairdryer];
 			
 		case "coffee":
-			list[coffee] = .12*value;
+			list[coffee] = rounded(.12*value);
 			return list[coffee];
 			
 		case "breakfast":
@@ -86,60 +83,22 @@ function equation(name, value) {
 				list[breakfast] = ((1.5/60)*10);
 			else if (value == 4) // oven
 				list[breakfast] = ((2.3/60)*15);
-			list[breakfast] = list[breakfast];
+			list[breakfast] = rounded(list[breakfast]);
 			return list[breakfast];
 			
 		case "fridge":
 			list[fridge] = 1.5*value;
 			return list[fridge];
 			
-		case "temp":
-			tempAC = (value == 1) ? true : false;
-			if (tempAC)
-				change("radio", "AC");
-			else
-				change("radio", "heating");
-			change("text", "temp_control");
-			return list[temp];
-		case "AC":
-			if (!tempAC)
-				return list[temp];
-			if (value == 0)
-				tempMult = 0;
-			else if (value == 1)
-				tempMult = .03;
-			else if (value == 2)
-				tempMult = 1;
-			else if (value == 3)
-				tempMult = 3;
-			change("text", "temp_control");
-			return list[temp];
-		case "heating":
-			if (tempAC)
-				return list[temp];
-			if (value == 0)
-				tempMult = 0;
-			else if (value == 1)
-				tempMult = 1.5;
-			else if (value == 2)
-				tempMult = 2.93;
-			else if (value == 3)
-				tempMult = 10.5;
-			change("text", "temp_control");
-			return list[temp];
-		case "temp_control":
-			list[temp] = tempMult*value;
-			return list[temp];
-			
 		case "washer":
 			if (value == 0)
 				list[washer] = 0;
 			else if (value == 1)
-				list[washer] = (1.15/7)*washType;
+				list[washer] = rounded((1.15/7)*washType);
 			else if (value == 2)
-				list[washer] = (1.15/7)*2*washType;
+				list[washer] = rounded((1.15/7)*2*washType);
 			else if (value == 3)
-				list[washer] = 1.15*washType;
+				list[washer] = rounded(1.15*washType);
 			list[washer] += (value == 0) ? 0 : 3;
 			return list[washer];
 		case "washType":
@@ -153,14 +112,14 @@ function equation(name, value) {
 			return list[washer];
 			
 		case "tv":
-			list[tv] = .2*value;
+			list[tv] = rounded(.2*value);
 			return list[tv];
 			
 		case "laptop":
 			laptop = (value == 1) ? true : false;
 			return list[laptopTime];
 		case "laptopTime":
-			list[laptopTime] = value*.04;
+			list[laptopTime] = rounded(value*.04);
 			change("radio", "laptop");
 			return list[laptopTime];
 			
@@ -168,7 +127,7 @@ function equation(name, value) {
 			desktop = (value == 1) ? true : false;
 			return list[desktopTime];
 		case "desktopTime":
-			list[desktopTime] = value*.12;
+			list[desktopTime] = rounded(value*.12);
 			change("radio", "desktop");
 			return list[desktopTime];
 			
@@ -186,7 +145,7 @@ function updateTotal() {
 			continue;
 		sum += list[i];
 	}
-	document.getElementById("total").innerHTML = rounded(sum) + " kWh per day";
+	document.getElementById("total").innerHTML = rounded(sum) + " kWh";
 }
 
 function reset() {
@@ -196,7 +155,7 @@ function reset() {
 	for (var i = 0; i < inputs.length; i++) {
 		change(inputs[i].type, inputs[i].name);
 	}
-	document.getElementById("total").innerHTML = "0 kWh per day";
+	document.getElementById("total").innerHTML = "0 kWh";
 }
 
 function rounded(num) {
