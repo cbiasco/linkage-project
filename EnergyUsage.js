@@ -48,9 +48,9 @@ function change(type, name) {
 	}
 	var element = document.getElementById("T_" + name);
 	if (element !== null && qualifies(name))
-		element.innerHTML = rounded(output) + " kWh";
+		element.innerHTML = rounded(output);
 	else if (element !== null)
-		element.innerHTML = "0 kWh";
+		element.innerHTML = 0;
 	updateTotal();
 }
 
@@ -208,8 +208,10 @@ function updateTotal() {
 			continue;
 		sum += list[i];
 	}
-	document.getElementById("total").innerHTML = rounded(sum) + " kWh per day";
+	document.getElementById("total").innerHTML = rounded(sum);
+	document.getElementById("CO2").innerHTML = rounded(sum*1.29);
 }
+
 
 function reset() {
 	var form = document.getElementById("activities");
@@ -218,7 +220,8 @@ function reset() {
 	for (var i = 0; i < inputs.length; i++) {
 		change(inputs[i].type, inputs[i].name);
 	}
-	document.getElementById("total").innerHTML = "0 kWh per day";
+	document.getElementById("total").innerHTML = 0;
+	document.getElementById("CO2").innerHTML = 0;
 }
 
 function rounded(num) {
