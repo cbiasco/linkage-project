@@ -19,8 +19,12 @@ var washType = 2;
 var tempAC = true;
 var tempMult = 0;
 var temp = 9;
+var light = 10;
+var lightNum = 0;
+var lightType = .08;
+var lightTime = 0;
 var list = [];
-for (var i = 0; i < 10; i++)
+for (var i = 0; i < 11; i++)
 	list[i] = 0;
 
 function change(type, name) {
@@ -99,7 +103,7 @@ function equation(name, value) {
 				change("radio", "AC");
 			else
 				change("radio", "heating");
-			change("text", "temp_control");
+			change("text", "tempControl");
 			return list[temp];
 		case "AC":
 			if (!tempAC)
@@ -112,7 +116,7 @@ function equation(name, value) {
 				tempMult = 1;
 			else if (value == 3)
 				tempMult = 3;
-			change("text", "temp_control");
+			change("text", "tempControl");
 			return list[temp];
 		case "heating":
 			if (tempAC)
@@ -125,9 +129,9 @@ function equation(name, value) {
 				tempMult = 2.93;
 			else if (value == 3)
 				tempMult = 10.5;
-			change("text", "temp_control");
+			change("text", "tempControl");
 			return list[temp];
-		case "temp_control":
+		case "tempControl":
 			list[temp] = tempMult*value;
 			return list[temp];
 			
@@ -151,6 +155,24 @@ function equation(name, value) {
 				washType = 5.5;
 			change("radio", "washer");
 			return list[washer];
+			
+		case "light":
+			if (value == 0)
+				lightType = .08;
+			else if (value == 1)
+				lightType = .02;
+			else if (value == 2)
+				lightType = .3;
+			list[light] = lightNum*lightType*lightTime;
+			return list[light];
+		case "lightNum":
+			lightNum = value;
+			change("radio", "light");
+			return list[light];
+		case "lightTime":
+			lightTime = value;
+			change("radio", "light");
+			return list[light];
 			
 		case "tv":
 			list[tv] = .2*value;

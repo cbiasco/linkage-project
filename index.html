@@ -34,24 +34,24 @@
 				<input type="radio" name="breakfast" value=0 onchange="change('radio', 'breakfast')" checked>No appliances<br>
 			<br>
 				Air conditioning or heating? &nbsp;&nbsp;&nbsp;&nbsp;
-				<span id="T_temp_control">0 kWh</span><br>
+				<span id="T_tempControl">0 kWh</span><br>
 				<input type="radio" name="temp" value=1 onchange="change('radio', 'temp')" checked>AC<br>
 				<input type="radio" name="temp" value=0 onchange="change('radio', 'temp')">Heating<br>
 			<br>
 				If AC, what kind of AC is it? &nbsp;&nbsp;&nbsp;&nbsp; <br>
 				<input type="radio" name="AC" value=3 onchange="change('radio', 'AC')">Central cooling<br>
 				<input type="radio" name="AC" value=2 onchange="change('radio', 'AC')">Window unit<br>
-				<input type="radio" name="AC" value=1 onchange="change('radio', 'AC')" checked>Portable fan<br>
+				<input type="radio" name="AC" value=1 onchange="change('radio', 'AC')">Portable fan<br>
 				<input type="radio" name="AC" value=0 onchange="change('radio', 'AC')" checked>The wind is my AC<br>
 			<br>
 				If heating, what kind of heating is it? &nbsp;&nbsp;&nbsp;&nbsp; <br>
 				<input type="radio" name="heating" value=3 onchange="change('radio', 'heating')">Electric furnace<br>
 				<input type="radio" name="heating" value=2 onchange="change('radio', 'heating')">Heat pump<br>
-				<input type="radio" name="heating" value=1 onchange="change('radio', 'heating')" checked>Portable heater<br>
+				<input type="radio" name="heating" value=1 onchange="change('radio', 'heating')">Portable heater<br>
 				<input type="radio" name="heating" value=0 onchange="change('radio', 'heating')" checked>Gas heating (no electricity)<br>
 			<br>
 				How many hours do you use temperature control? &nbsp;&nbsp;&nbsp;&nbsp; <br>
-				<input type="text" name="temp_control" value=0 onchange="change('text', 'temp_control')"><br>
+				<input type="text" name="tempControl" value=0 onchange="change('text', 'tempControl')"><br>
 			<br>
 				Do you own a fridge? &nbsp;&nbsp;&nbsp;&nbsp;
 				<span id="T_fridge">0 kWh</span><br>
@@ -64,6 +64,18 @@
 				<input type="radio" name="washer" value=2 onchange="change('radio', 'washer')">A couple times a week.<br>
 				<input type="radio" name="washer" value=1 onchange="change('radio', 'washer')">Once a week-ish.<br>
 				<input type="radio" name="washer" value=0 onchange="change('radio', 'washer')" checked>Wash my clothes?<br>
+			<br>
+				What type of light blubs do you have? &nbsp;&nbsp;&nbsp;&nbsp; 
+				<span id="T_light">0 kWh</span><br>
+				<input type="radio" name="light" value=2 onchange="change('radio', 'light')">Halogen<br>
+				<input type="radio" name="light" value=1 onchange="change('radio', 'light')">Incandescent<br>
+				<input type="radio" name="light" value=0 onchange="change('radio', 'light')" checked>Compact fluorescent<br>
+			<br>
+				Roughly how many lights do you use? &nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="text" name="lightNum" value=0 onchange="change('text', 'lightNum')"> <br>
+			<br>
+				How many hours do you spend with those lights on? &nbsp;&nbsp;&nbsp;&nbsp;
+				<input type="text" name="lightTime" value=0 onchange="change('text', 'lightTime')"> <br>
 			<br>
 				Do you wash your clothes with hot, warm, or cold water? &nbsp;&nbsp;&nbsp;&nbsp; <br>
 				<input type="radio" name="washType" value=2 onchange="change('radio', 'washType')">Hot<br>
